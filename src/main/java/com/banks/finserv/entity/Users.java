@@ -1,5 +1,7 @@
 package com.banks.finserv.entity;
 
+import java.util.Objects;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -52,5 +54,24 @@ public class Users {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, firstName, id, lastName, password, userName);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Users other = (Users) obj;
+		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName) && id == other.id
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
+				&& Objects.equals(userName, other.userName);
+	}
+	
+	
 
 }

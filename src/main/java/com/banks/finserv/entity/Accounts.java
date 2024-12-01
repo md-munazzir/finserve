@@ -1,6 +1,7 @@
 package com.banks.finserv.entity;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -63,6 +64,26 @@ public class Accounts {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(accNumber, acctid, balance, createdAt, isActive, updatedAt, userId);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Accounts other = (Accounts) obj;
+		return Objects.equals(accNumber, other.accNumber) && acctid == other.acctid
+				&& Double.doubleToLongBits(balance) == Double.doubleToLongBits(other.balance)
+				&& Objects.equals(createdAt, other.createdAt) && isActive == other.isActive
+				&& Objects.equals(updatedAt, other.updatedAt) && userId == other.userId;
+	}
+	
+	
 	
 
 }
